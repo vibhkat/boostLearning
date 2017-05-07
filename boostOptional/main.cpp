@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <boost/optional.hpp>
-
+//boost::optional need not to be initialised
 using namespace boost;
 
 class Address
@@ -40,8 +40,8 @@ int main(int argc, char * argv[])
 
 	p.m_middleName = "Hamish";
 	p.m_middleName = "The Gambler";
-std::cout << (p.m_middleName ? *p.m_middleName : "No middle Name" ) << std::endl;
-
+	std::cout << (p.m_middleName ? *p.m_middleName : "No middle Name" ) << std::endl;
+	//need to construct the object, since it is pointer
 	p.m_address = Address { "Boulder"} ;
 	
 	if(p.m_address)
