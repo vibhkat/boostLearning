@@ -74,6 +74,25 @@ struct C
 	boost::variant<A,B> op;
 };
 
+void make(boost::variant<A,B> & temp)
+{
+
+	int input = 0;
+	std::cin >> input;
+
+	if(input ==1)
+		temp = A{};
+	else
+		temp= B{};
+}
+
+
+auto makeNew()
+{
+	auto ptr = new boost::variant<A,B>(B{});
+
+	return ptr;
+}
 
 
 int main()
@@ -94,12 +113,24 @@ int main()
   std::cout << c.call() << std::endl;
 
   x=B{};
+
+  int j = 9;
   std::cout << boost::apply_visitor([&](auto o)
   {
-  	return o.send();
+  	return o.send()+j;
   }
-  	,x);
+  	,x) << std::endl;
 
+  boost::variant<A,B> c2 ;
+
+  //make(c2); 
+
+  auto point = makeNew();
+	std::cout << boost::apply_visitor([&](auto o)
+  {
+  	return o.send()+j;
+  }
+  	,*point) << std::endl;
 
 
 
