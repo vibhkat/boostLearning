@@ -14,6 +14,13 @@ struct A
 		return 1;
 	}
 
+	auto send()
+	{
+		return i;
+	}
+
+	int i =10;
+
 };
 
 
@@ -28,6 +35,13 @@ struct B
 	{
 		return "Hello World";
 	}
+
+	auto send()
+	{
+		return i;
+	}
+
+	int i =100;
 
 };
 
@@ -78,6 +92,17 @@ int main()
 
   C c(B{});
   std::cout << c.call() << std::endl;
+
+  x=B{};
+  std::cout << boost::apply_visitor([&](auto o)
+  {
+  	return o.send();
+  }
+  	,x);
+
+
+
+
 
 	return 0;
 }
